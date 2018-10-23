@@ -11,7 +11,8 @@
  
  
 		<?php 
-		include 'koneksi.php';
+		
+		include 'coba.php';
 		?>
  
 		<table border="1">
@@ -20,24 +21,27 @@
 				<th>Username</th>
 				<th>Password</th>
 				<th>Level</th>
-				<th>Full Name</th>
+				<th>Fullname</th>
 			</tr>
-			<?php 
-			$no = 1;
-			$sql = mysqli_query($koneksi,"select * from data_siswa");
-			while($data = mysqli_fetch_array($sql)){
-			?>
-			<tr>
-				<td><?php echo $data['ID']++; ?></td>
-				<td><?php echo $data['Username']; ?></td>
-				<td><?php echo $data['Password']; ?></td>
-				<td><?php echo $data['Level']; ?></td>
-				<td><?php echo $data['Full Name']; ?></td>
-			</tr>
-			<?php 
-			}
-			?>
+
+<?php
+  include('koneksi.php');
+  $sql ="SELECT * FROM data_siswa";
+  $peserta=mysqli_query($koneksi,$sql);
+   while($baris_data=mysqli_fetch_array($peserta,MYSQLI_ASSOC)){
+  	echo'
+  	</tr>
+  		<td>'.$baris_data['ID'].'</td>
+  		<td>'.$baris_data['Username'].'</td>
+  		<td>'.$baris_data['Password'].'</td>
+  		<td>'.$baris_data['Level'].'</td>
+  		<td>'.$baris_data['Fullname'].'</td>
+   	</tr>';
+  }
+  ?>
+
 		</table>
 	</center>
+
 </body>
 </html>
